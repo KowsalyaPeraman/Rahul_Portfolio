@@ -1,31 +1,29 @@
 import { useNavigate } from "react-router-dom";
 
-import meta1 from "../assets/meta/meta1.mp4";
-import meta2 from "../assets/meta/meta2.mp4";
-import meta3 from "../assets/meta/meta3.mp4";
-import meta4 from "../assets/meta/meta4.mp4";
-import meta5 from "../assets/meta/meta5.mp4";
-import meta6 from "../assets/meta/meta6.mp4";
-import meta7 from "../assets/meta/meta7.mp4";
-import meta8 from "../assets/meta/meta8.mp4";
-import meta9 from "../assets/meta/meta9.mp4";
-import meta10 from "../assets/meta/meta10.mp4";
-import meta11 from "../assets/meta/meta11.mp4";
-import meta12 from "../assets/meta/meta12.mp4";
-import meta13 from "../assets/meta/meta13.mp4";
-import meta14 from "../assets/meta/meta14.mp4";
-import meta15 from "../assets/meta/meta15.mp4";
-import meta16 from "../assets/meta/meta16.mp4";
-import meta17 from "../assets/meta/meta17.mp4";
-import meta18 from "../assets/meta/meta18.mp4";
-import meta19 from "../assets/meta/meta19.mp4";
-import meta20 from "../assets/meta/meta20.mp4";
-import meta21 from "../assets/meta/meta21.mp4";
+
 
 const videos = [
-  meta1, meta2, meta3, meta4, meta5, meta6,
-  meta7, meta8, meta9, meta10, meta11, meta12,
-  meta13, meta14, meta15, meta16, meta17,meta18, meta19, meta20,meta21
+  "/videos/meta1.mp4",
+  "/videos/meta2.mp4",
+  "/videos/meta3.mp4",
+  "/videos/meta4.mp4",
+  "/videos/meta5.mp4",
+  "/videos/meta6.mp4",
+  "/videos/meta7.mp4",
+  "/videos/meta8.mp4",
+  "/videos/meta9.mp4",
+  "/videos/meta10.mp4",
+  "/videos/meta11.mp4",
+  "/videos/meta12.mp4",
+  "/videos/meta13.mp4",
+  "/videos/meta14.mp4",
+  "/videos/meta15.mp4",
+  "/videos/meta16.mp4",
+  "/videos/meta17.mp4",
+  "/videos/meta18.mp4",
+  "/videos/meta19.mp4",
+  "/videos/meta20.mp4",
+  "/videos/meta21.mp4",
 ];
 
 function MetaWorks() {
