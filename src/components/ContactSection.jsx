@@ -18,7 +18,7 @@ const ContactSection = () => {
             Lets Connect there
           </h1>
           <button
-            onClick={() => window.location.href = "mailto:Jaycrea36@gmail.com?subject=Hire Enquiry"}
+            onClick={() => window.location.href = "mailto:rahulaetopaz@gmail.com?subject=Hire Enquiry"}
             className="bg-orange-500 hover:bg-orange-600 transition-colors duration-300 px-6 py-3 rounded-full font-semibold flex items-center gap-2 whitespace-nowrap"
           >
             Hire me <span>↗</span>
