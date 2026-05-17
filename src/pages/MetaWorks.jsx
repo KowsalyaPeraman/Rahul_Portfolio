@@ -1,26 +1,27 @@
 import { useNavigate } from "react-router-dom";
+
 const videos = [
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta1_r9bgs2",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta2_v4csjc",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta3_oxkr4u",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta4_zrurjr",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta5_idowlh",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta6_r4rkqs",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta7_a9qgnz",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta8_rwx7vv",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta9_dssi0v",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta10_crmv3v",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta11_r8uaoa",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta12_eihd2r",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta13_e4ncgr",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta14_wosfgz",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta15_jpgyar",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta16_bhzy7p",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta17_kw4nr9",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta18_kysas3",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta19_gcsbuh",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta20_vphh6g",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta21_kqfe3n"
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta1_r9bgs2.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta2_v4csjc.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta3_oxkr4u.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta4_zrurjr.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta5_idowlh.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta6_r4rkqs.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta7_a9qgnz.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta8_rwx7vv.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta9_dssi0v.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta10_crmv3v.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta11_r8uaoa.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta12_eihd2r.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta13_e4ncgr.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta14_wosfgz.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta15_jpgyar.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta16_bhzy7p.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta17_kw4nr9.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta18_kysas3.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta19_gcsbuh.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta20_vphh6g.mp4",
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta21_kqfe3n.mp4"
 ];
 
 function MetaWorks() {
