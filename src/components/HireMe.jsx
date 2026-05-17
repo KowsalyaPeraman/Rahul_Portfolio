@@ -32,8 +32,9 @@ const HireMe = ({ openContact }) => {
             </p>
 
             {/* STATS (CENTER FIXED) */}
-            <div className="mt-8 flex justify-center md:justify-start">
-              <div className="text-center md:text-left">
+            {/* STATS */}
+            <div className="mt-8 flex justify-center">
+              <div className="text-center">
                 <p className="text-3xl font-extrabold text-[#1a1a2e]">100+</p>
                 <p className="text-gray-400 text-sm mt-1">Project Completed</p>
               </div>

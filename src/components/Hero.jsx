@@ -29,16 +29,16 @@ const Hero = ({ openContact }) => {
         </div>
 
         {/* Hero image section */}
-        <div className="relative flex justify-center items-end -mt-30 sm:-mt-22 min-h-[180px] sm:min-h-[220px]">
+        <div className="relative flex justify-center items-end -mt-16 sm:-mt-20 md:-mt-24 min-h-[180px] sm:min-h-[220px] md:min-h-[260px]">
 
           {/* Orange semicircle */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[260px] sm:w-[380px] h-[240px] sm:h-[360px] bg-orange-400 rounded-t-full z-0"></div>
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[260px] sm:w-[320px] h-[240px] sm:h-[360px] max-w-full bg-400 rounded-t-full z-0"></div>
 
           {/* Person image */}
           <img
             src={poster99}
             alt="Rahul"
-            className="relative z-10 w-[240px] sm:w-[320px] md:w-[380px] object-contain"
+            className="relative z-10 w-[240px] sm:w-[320px] md:w-[380px] max-w-full h-auto object-contain -ml-12 -mt-3"
           />
 
           {/* Left card */}
