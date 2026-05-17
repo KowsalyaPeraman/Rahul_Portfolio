@@ -5,7 +5,7 @@ const ContactSection = () => {
 
   const handleSend = () => {
     if (!email.trim()) return;
-    window.location.href = `mailto:Jaycrea36@gmail.com?subject=Newsletter Subscription&body=Please add me to your newsletter: ${email}`;
+    window.location.href = `mailto:rahulaetopaz@gmail.com?subject=Newsletter Subscription&body=Please add me to your newsletter: ${email}`;
   };
 
   return (
