@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const videos = [
@@ -21,47 +22,88 @@ const videos = [
   "https://res.cloudinary.com/dxawos8pp/video/upload/meta18_kysas3.mp4",
   "https://res.cloudinary.com/dxawos8pp/video/upload/meta19_gcsbuh.mp4",
   "https://res.cloudinary.com/dxawos8pp/video/upload/meta20_vphh6g.mp4",
-  "https://res.cloudinary.com/dxawos8pp/video/upload/meta21_kqfe3n.mp4"
+  "https://res.cloudinary.com/dxawos8pp/video/upload/meta21_kqfe3n.mp4",
 ];
+
+// Animated video card
+const AnimatedVideoCard = ({ video, index }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.transition = `opacity 0.5s ease ${(index % 3) * 100}ms, transform 0.5s ease ${(index % 3) * 100}ms`;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index]);
+
+  return (
+    <div
+      ref={ref}
+      className="overflow-hidden rounded-[30px] bg-white/10 border border-white/20 p-3 hover:border-white/50 hover:scale-[1.01] duration-300"
+    >
+      <video
+        src={video}
+        controls
+        autoPlay={false}
+        muted
+        playsInline
+        preload="metadata"
+        className="w-full h-[500px] object-cover rounded-[25px]"
+      />
+    </div>
+  );
+};
 
 function MetaWorks() {
   const navigate = useNavigate();
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    const el = titleRef.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(-20px)";
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    setTimeout(() => {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }, 100);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-orange-500 px-6 pt-5 pb-10">
+    <div className="min-h-screen bg-orange-500 px-4 sm:px-6 pt-5 pb-10">
 
       {/* Header */}
       <div className="relative flex items-center justify-center mb-10">
         <button
           onClick={() => navigate("/")}
-          className="absolute left-0 w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-pink-500 duration-300 text-2xl"
+          className="absolute left-0 w-12 h-12 rounded-full bg-white/20 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-orange-500 duration-300 text-2xl"
         >
           ←
         </button>
-
-        <p className="text-gray-300 text-4xl font-semibold text-center">
+        <p ref={titleRef} className="text-white text-3xl sm:text-4xl font-semibold text-center px-14">
           Meta Ad Works
         </p>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1400px] mx-auto">
         {videos.map((video, index) => (
-          <div
-            key={index}
-            className="overflow-hidden rounded-[30px] bg-white/5 border border-white/10 p-3 hover:border-pink-500 duration-300"
-          >
-            <video
-              src={video}
-              controls
-              autoPlay={false}
-              muted
-              playsInline
-              preload="metadata"
-              className="w-full h-[500px] object-cover rounded-[25px]"
-              onError={() => console.log("Video failed to load:", video)}
-            />
-          </div>
+          <AnimatedVideoCard key={index} video={video} index={index} />
         ))}
       </div>
 

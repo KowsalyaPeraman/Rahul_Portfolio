@@ -1,11 +1,18 @@
 import { useState } from "react";
+import useScrollAnimation from "../hooks/useScrollAnimation";
 
 const ContactSection = () => {
   const [email, setEmail] = useState("");
 
+  const topRef  = useScrollAnimation("up",   0);
+  const col1Ref = useScrollAnimation("up", 100);
+  const col2Ref = useScrollAnimation("up", 200);
+  const col3Ref = useScrollAnimation("up", 300);
+
   const handleSend = () => {
     if (!email.trim()) return;
     window.location.href = `mailto:rahulaetopaz@gmail.com?subject=Newsletter Subscription&body=Please add me to your newsletter: ${email}`;
+    setEmail("");
   };
 
   return (
@@ -13,13 +20,13 @@ const ContactSection = () => {
 
       {/* Top CTA */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-12 pb-8">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-5">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center sm:text-left">
+        <div ref={topRef} className="flex flex-col sm:flex-row justify-between items-center gap-5">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight text-center sm:text-left">
             Lets Connect there
           </h1>
           <button
             onClick={() => window.location.href = "mailto:rahulaetopaz@gmail.com?subject=Hire Enquiry"}
-            className="bg-orange-500 hover:bg-orange-600 transition-colors duration-300 px-6 py-3 rounded-full font-semibold flex items-center gap-2 whitespace-nowrap"
+            className="bg-orange-500 hover:bg-orange-600 hover:scale-105 transition-all duration-300 px-6 py-3 rounded-full font-semibold flex items-center gap-2 whitespace-nowrap text-sm sm:text-base"
           >
             Hire me <span>↗</span>
           </button>
@@ -30,21 +37,17 @@ const ContactSection = () => {
 
       {/* Footer grid */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-10 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
 
-          {/* Brand */}
-          <div className="sm:col-span-2 md:col-span-1">
-            
+          {/* Brand desc */}
+          <div ref={col1Ref}>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Have a project in mind or looking to collaborate? Feel free to reach out — let’s create something amazing together.
+              Have a project in mind or looking to collaborate? Feel free to reach out — let's create something amazing together.
             </p>
-            
-           
-           
           </div>
 
           {/* Contact */}
-          <div>
+          <div ref={col2Ref}>
             <h3 className="text-orange-400 font-semibold mb-4">Contact</h3>
             <div className="flex flex-col gap-2 text-gray-300 text-sm">
               <span>+91 7868961046</span>
@@ -53,7 +56,7 @@ const ContactSection = () => {
           </div>
 
           {/* Newsletter */}
-          <div>
+          <div ref={col3Ref}>
             <h3 className="text-orange-400 font-semibold mb-4">Get the latest information</h3>
             <div className="flex bg-white rounded-full overflow-hidden">
               <input
@@ -71,7 +74,6 @@ const ContactSection = () => {
                 →
               </button>
             </div>
-            
           </div>
 
         </div>
@@ -81,8 +83,7 @@ const ContactSection = () => {
 
       {/* Bottom bar */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-gray-500 text-xs sm:text-sm text-center">
-       
-        <div className="flex gap-3 sm:gap-4 flex-wrap justify-center">
+        <div className="flex gap-3 flex-wrap justify-center">
           <span className="hover:text-orange-400 cursor-pointer transition-colors">User Terms & Conditions</span>
           <span>|</span>
           <span className="hover:text-orange-400 cursor-pointer transition-colors">Privacy Policy</span>
