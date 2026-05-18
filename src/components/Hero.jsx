@@ -23,7 +23,7 @@ const Hero = ({ openContact }) => {
           </h1>
 
           <h1 className="text-[42px] sm:text-[72px] md:text-[96px] font-extrabold leading-none tracking-tight text-[#1a1a2e]">
-            UI/UX Designer
+            Graphic Designer
           </h1>
 
         </div>

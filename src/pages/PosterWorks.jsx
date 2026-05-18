@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import poster1 from "../assets/posters/poster1.jpg";
@@ -59,50 +59,93 @@ import poster55 from "../assets/posters/poster55.png";
 import poster56 from "../assets/posters/poster56.png";
 
 const posterImages = [
-  poster1, poster2, poster3, poster4,
-  poster5, poster6, poster7, poster8,poster9 ,poster10 ,poster11, poster12, poster13, poster14,
-  poster15, poster16, poster17, poster18,poster19 ,poster20, poster21, poster22, poster23, poster24,
-  poster25, poster26, poster27, poster28,poster29 ,poster30 ,poster31, poster32, poster33, poster34,
-  poster35, poster36, poster37, poster38,poster39 ,poster40 ,poster41, poster42, poster43, poster44,
-  poster45, poster46, poster47, poster48,poster49 ,poster50 ,poster51, poster52, poster53, poster54,
-  poster55, poster56
+  poster1, poster2, poster3, poster4, poster5, poster6, poster7, poster8,
+  poster9, poster10, poster11, poster12, poster13, poster14, poster15, poster16,
+  poster17, poster18, poster19, poster20, poster21, poster22, poster23, poster24,
+  poster25, poster26, poster27, poster28, poster29, poster30, poster31, poster32,
+  poster33, poster34, poster35, poster36, poster37, poster38, poster39, poster40,
+  poster41, poster42, poster43, poster44, poster45, poster46, poster47, poster48,
+  poster49, poster50, poster51, poster52, poster53, poster54, poster55, poster56,
 ];
+
+// Animated card component
+const AnimatedCard = ({ img, index, onClick }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.transition = `opacity 0.5s ease ${(index % 6) * 80}ms, transform 0.5s ease ${(index % 6) * 80}ms`;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index]);
+
+  return (
+    <div
+      ref={ref}
+      onClick={() => onClick(img)}
+      className="group relative overflow-hidden rounded-[30px] cursor-pointer bg-white/5 border border-white/10 hover:border-white/40 duration-500 shadow-xl"
+    >
+      <img
+        src={img}
+        alt=""
+        className="w-full h-[420px] object-cover group-hover:scale-110 duration-500"
+      />
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 duration-500"></div>
+    </div>
+  );
+};
 
 function PosterWorks() {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null);
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    const el = titleRef.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(-20px)";
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    setTimeout(() => {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }, 100);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-orange-500 px-6 pt-5 pb-10">
+    <div className="min-h-screen bg-orange-500 px-4 sm:px-6 pt-5 pb-10">
 
       {/* Top */}
       <div className="relative flex items-center justify-center mb-8">
         <button
           onClick={() => navigate("/")}
-          className="absolute left-0 w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-orange-500 duration-300 text-2xl"
+          className="absolute left-0 w-12 h-12 rounded-full bg-white/20 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-orange-500 duration-300 text-2xl"
         >
           ←
         </button>
-        <p className="text-gray-300 text-3xl font-semibold text-center">
+        <p ref={titleRef} className="text-white text-2xl sm:text-3xl font-semibold text-center px-14">
           Creative Posters & Social Media Designs
         </p>
       </div>
 
       {/* Poster Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {posterImages.map((img, index) => (
-          <div
-            key={index}
-            onClick={() => setSelectedImage(img)}
-            className="group relative overflow-hidden rounded-[30px] cursor-pointer bg-white/5 border border-white/10 hover:border-orange-400 duration-500 shadow-xl"
-          >
-            <img
-              src={img}
-              alt=""
-              className="w-full h-[420px] object-cover group-hover:scale-110 duration-500"
-            />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 duration-500"></div>
-          </div>
+          <AnimatedCard key={index} img={img} index={index} onClick={setSelectedImage} />
         ))}
       </div>
 
@@ -111,15 +154,21 @@ function PosterWorks() {
         <div
           onClick={() => setSelectedImage(null)}
           className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-5"
+          style={{ animation: "fadeIn 0.2s ease" }}
         >
           <img
             src={selectedImage}
             alt=""
             className="max-w-[90vw] max-h-[90vh] rounded-[30px]"
+            style={{ animation: "scaleIn 0.2s ease" }}
           />
         </div>
       )}
 
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+        @keyframes scaleIn { from { transform: scale(0.9); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+      `}</style>
     </div>
   );
 }
